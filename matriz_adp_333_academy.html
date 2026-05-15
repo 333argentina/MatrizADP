@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matriz ADP · Diagnóstico de Liderazgo y Gestión · 333 Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul: #1F6DB1;
+    --azul-oscuro: #145082;
+    --azul-claro: #D1E4F6;
+    --azul-suave: #EBF3FB;
+    --naranja: #E88772;
+    --naranja-claro: #FCE4DE;
+    --gris: #53565A;
+    --gris-claro: #8A8D91;
+    --gris-fondo: #F5F6F7;
+    --verde: #5CB85C;
+    --amarillo: #F0AD4E;
+    --rojo: #D9534F;
+    --blanco: #FFFFFF;
+    --sombra: 0 2px 12px rgba(31, 109, 177, 0.08);
+    --sombra-fuerte: 0 6px 24px rgba(31, 109, 177, 0.15);
+    --radio: 12px;
+    --radio-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--gris-fondo);
+    color: var(--gris);
+    line-height: 1.55;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: var(--blanco);
+    border-bottom: 1px solid #E5E7EA;
+    padding: 18px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo-333 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    color: var(--azul);
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+
+  .logo-333 sup {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--azul);
+    vertical-align: super;
+  }
+
+  .brand-text {
+    font-size: 12px;
+    color: var(--gris-claro);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    border-left: 2px solid var(--azul-claro);
+    padding-left: 14px;
+  }
+
+  .progress-indicator {
+    font-size: 13px;
+    color: var(--gris-claro);
+    font-weight: 500;
+  }
+
+  .progress-indicator strong {
+    color: var(--azul);
+    font-weight: 700;
+  }
+
+  /* ===== MAIN ===== */
+  main {
+    padding: 48px 0 80px;
+  }
+
+  .screen { display: none; }
+  .screen.active { display: block; animation: fadeIn 0.4s ease; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== INTRO ===== */
+  .hero-card {
+    background: var(--blanco);
+    border-radius: var(--radio);
+    padding: 56px 48px;
+    box-shadow: var(--sombra);
+    border-top: 4px solid var(--azul);
+  }
+
+  .eyebrow {
+    color: var(--naranja);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    font-size: 36px;
+    color: var(--azul);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+
+  .lead {
+    font-size: 17px;
+    color: var(--gris);
+    margin-bottom: 32px;
+    line-height: 1.6;
+    max-width: 720px;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 36px 0;
+  }
+
+  .info-block {
+    background: var(--azul-suave);
+    padding: 22px;
+    border-radius: var(--radio-sm);
+  }
+
+  .info-block .label {
+    font-size: 11px;
+    color: var(--azul);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .info-block .value {
+    font-size: 22px;
+    color: var(--azul-oscuro);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .info-block .desc {
+    font-size: 13px;
+    color: var(--gris);
+    margin-top: 6px;
+  }
+
+  .form-group {
+    margin: 28px 0;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gris);
+    margin-bottom: 8px;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid #D8DCE0;
+    border-radius: var(--radio-sm);
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--gris);
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--azul);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .disclaimer {
+    font-size: 13px;
+    color: var(--gris-claro);
+    background: var(--gris-fondo);
+    padding: 16px 20px;
+    border-radius: var(--radio-sm);
+    margin: 24px 0;
+    border-left: 3px solid var(--naranja);
+  }
+
+  /* ===== BUTTONS ===== */
+  .btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border: none;
+    border-radius: var(--radio-sm);
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+
+  .btn-primary {
+    background: var(--naranja);
+    color: var(--blanco);
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background: #D67560;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(232, 135, 114, 0.3);
+  }
+
+  .btn-primary:disabled {
+    background: #D8DCE0;
+    cursor: not-allowed;
+    color: var(--gris-claro);
+  }
+
+  .btn-secondary {
+    background: var(--blanco);
+    color: var(--azul);
+    border: 1.5px solid var(--azul);
+  }
+
+  .btn-secondary:hover {
+    background: var(--azul-suave);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--gris);
+    padding: 14px 20px;
+  }
+
+  .btn-ghost:hover {
+    color: var(--azul);
+  }
+
+  .button-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 36px;
+    gap: 16px;
+  }
+
+  /* ===== EJE SECTION ===== */
+  .eje-header {
+    background: var(--blanco);
+    border-radius: var(--radio);
+    padding: 32px 40px;
+    margin-bottom: 20px;
+    box-shadow: var(--sombra);
+    border-left: 5px solid var(--azul);
+  }
+
+  .eje-header.dir { border-left-color: var(--azul); }
+  .eje-header.com { border-left-color: var(--naranja); }
+  .eje-header.cmp { border-left-color: #6FA8DC; }
+
+  .eje-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    background: var(--azul-suave);
+    color: var(--azul);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+
+  .eje-tag.com {
+    background: var(--naranja-claro);
+    color: #B85A45;
+  }
+
+  .eje-tag.cmp {
+    background: #DDE9F5;
+    color: var(--azul-oscuro);
+  }
+
+  .eje-header h2 {
+    font-size: 28px;
+    color: var(--azul-oscuro);
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.25;
+  }
+
+  .eje-header .subtitle {
+    font-size: 15px;
+    color: var(--gris);
+    font-style: italic;
+  }
+
+  /* ===== PROGRESS BAR ===== */
+  .progress-bar {
+    height: 4px;
+    background: #E5E7EA;
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--azul);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+
+  /* ===== QUESTIONS ===== */
+  .question-card {
+    background: var(--blanco);
+    border-radius: var(--radio);
+    padding: 28px 32px;
+    margin-bottom: 14px;
+    box-shadow: var(--sombra);
+    transition: box-shadow 0.2s;
+  }
+
+  .question-card.answered {
+    border-left: 3px solid var(--verde);
+  }
+
+  .question-number {
+    color: var(--naranja);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .question-text {
+    font-size: 15.5px;
+    color: var(--gris);
+    line-height: 1.55;
+    margin-bottom: 22px;
+    font-weight: 500;
+  }
+
+  .scale {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .scale-option {
+    background: var(--blanco);
+    border: 1.5px solid #D8DCE0;
+    padding: 14px 8px;
+    border-radius: var(--radio-sm);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.18s;
+    user-select: none;
+    font-weight: 600;
+    color: var(--gris-claro);
+    font-size: 18px;
+  }
+
+  .scale-option:hover {
+    border-color: var(--azul);
+    color: var(--azul);
+  }
+
+  .scale-option.selected {
+    background: var(--azul);
+    color: var(--blanco);
+    border-color: var(--azul);
+    transform: scale(1.02);
+  }
+
+  .scale-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--gris-claro);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== RESULTADOS ===== */
+  .resultado-card {
+    background: var(--blanco);
+    border-radius: var(--radio);
+    padding: 40px;
+    margin-bottom: 20px;
+    box-shadow: var(--sombra);
+  }
+
+  .resultado-card.global {
+    border-top: 4px solid var(--naranja);
+    padding: 48px 40px;
+  }
+
+  .resultado-card.global h2 {
+    font-size: 30px;
+    color: var(--azul-oscuro);
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  .resultado-card.global .nombre-eval {
+    font-size: 16px;
+    color: var(--gris-claro);
+    margin-bottom: 28px;
+  }
+
+  .nombre-eval strong {
+    color: var(--gris);
+    font-weight: 600;
+  }
+
+  .ejes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin: 28px 0;
+  }
+
+  .eje-resultado {
+    padding: 24px 28px;
+    border-radius: var(--radio-sm);
+    background: var(--gris-fondo);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .eje-resultado-info h3 {
+    font-size: 15px;
+    color: var(--gris);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .eje-resultado-info .question {
+    font-size: 14px;
+    color: var(--gris-claro);
+    font-style: italic;
+    margin-bottom: 16px;
+  }
+
+  .bar-track {
+    height: 10px;
+    background: var(--blanco);
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    border: 1px solid #E5E7EA;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 5px;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .bar-fill.verde { background: var(--verde); }
+  .bar-fill.amarillo { background: var(--amarillo); }
+  .bar-fill.naranja { background: var(--naranja); }
+  .bar-fill.rojo { background: var(--rojo); }
+
+  .eje-resultado-score {
+    text-align: right;
+    min-width: 120px;
+  }
+
+  .score-number {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--azul-oscuro);
+  }
+
+  .score-number.verde { color: var(--verde); }
+  .score-number.amarillo { color: #C68F2E; }
+  .score-number.naranja { color: var(--naranja); }
+  .score-number.rojo { color: var(--rojo); }
+
+  .score-zone {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-top: 4px;
+  }
+
+  .score-zone.verde { color: var(--verde); }
+  .score-zone.amarillo { color: #C68F2E; }
+  .score-zone.naranja { color: var(--naranja); }
+  .score-zone.rojo { color: var(--rojo); }
+
+  /* DIAGNÓSTICO */
+  .diagnostico-section {
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid #E5E7EA;
+  }
+
+  .diagnostico-section h3 {
+    color: var(--azul-oscuro);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .diagnostico-badge {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .diagnostico-badge.gestion {
+    background: var(--azul-suave);
+    color: var(--azul);
+  }
+
+  .diagnostico-badge.liderazgo {
+    background: var(--naranja-claro);
+    color: #B85A45;
+  }
+
+  .diagnostico-badge.consolidado {
+    background: #DDF2DD;
+    color: #2E7D32;
+  }
+
+  .diagnostico-badge.critico {
+    background: #FADBD9;
+    color: #A93B38;
+  }
+
+  .diagnostico-texto {
+    font-size: 15.5px;
+    color: var(--gris);
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  .diagnostico-texto strong {
+    color: var(--azul-oscuro);
+    font-weight: 700;
+  }
+
+  /* OBSTÁCULOS */
+  .obstaculos {
+    background: var(--azul-suave);
+    border-radius: var(--radio-sm);
+    padding: 28px 32px;
+    margin-top: 24px;
+  }
+
+  .obstaculos h4 {
+    color: var(--azul-oscuro);
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .obstaculos .citation {
+    font-size: 13px;
+    color: var(--gris-claro);
+    font-style: italic;
+    margin-bottom: 18px;
+  }
+
+  .obstaculos ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .obstaculos li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(31, 109, 177, 0.12);
+    font-size: 14.5px;
+    color: var(--gris);
+    line-height: 1.55;
+  }
+
+  .obstaculos li:last-child { border-bottom: none; }
+
+  .obstaculos li strong {
+    color: var(--azul-oscuro);
+    display: block;
+    margin-bottom: 3px;
+    font-weight: 700;
+    font-size: 13.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* PREGUNTAS REFLEXIÓN */
+  .reflexion {
+    background: var(--naranja-claro);
+    border-radius: var(--radio-sm);
+    padding: 28px 32px;
+    margin-top: 20px;
+  }
+
+  .reflexion h4 {
+    color: #B85A45;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+
+  .reflexion ol {
+    padding-left: 22px;
+  }
+
+  .reflexion li {
+    font-size: 14.5px;
+    color: var(--gris);
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+
+  .reflexion li::marker {
+    color: var(--naranja);
+    font-weight: 700;
+  }
+
+  /* ZONA LEGEND */
+  .legend {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 24px 0;
+    padding: 20px;
+    background: var(--gris-fondo);
+    border-radius: var(--radio-sm);
+  }
+
+  .legend-item {
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .legend-item .dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+
+  .legend-item .range {
+    font-weight: 700;
+    color: var(--gris);
+    margin-bottom: 2px;
+  }
+
+  .legend-item .name {
+    color: var(--gris-claro);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--azul-oscuro);
+    color: var(--blanco);
+    padding: 28px 0;
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  footer .logo-333 {
+    color: var(--blanco);
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+
+  footer .logo-333 sup { color: var(--blanco); }
+
+  footer p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 4px 0;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 720px) {
+    h1 { font-size: 28px; }
+    .hero-card { padding: 36px 24px; }
+    .info-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .eje-header { padding: 24px; }
+    .eje-header h2 { font-size: 22px; }
+    .question-card { padding: 22px 20px; }
+    .resultado-card { padding: 28px 22px; }
+    .resultado-card.global h2 { font-size: 24px; }
+    .eje-resultado {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .eje-resultado-score { text-align: left; }
+    .legend { grid-template-columns: repeat(2, 1fr); }
+    .scale { gap: 4px; }
+    .scale-option { padding: 12px 4px; font-size: 16px; }
+    .button-row {
+      flex-direction: column-reverse;
+      gap: 12px;
+    }
+    .button-row .btn { width: 100%; }
+    .brand-text { display: none; }
+  }
+
+  /* ===== PRINT ===== */
+  @media print {
+    header, footer, .no-print { display: none !important; }
+    body { background: white; }
+    main { padding: 0; }
+    .resultado-card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+    .screen { display: block !important; }
+    #intro, #eje-1, #eje-2, #eje-3 { display: none !important; }
+  }
+
+  .hidden-on-load { display: none; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <div class="brand">
+      <div class="logo-333">333<sup>®</sup></div>
+      <div class="brand-text">Academy</div>
+    </div>
+    <div class="progress-indicator" id="progress-text"></div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <!-- ===== INTRO ===== -->
+    <section id="intro" class="screen active">
+      <div class="hero-card">
+        <div class="eyebrow">Herramienta de Autoevaluación</div>
+        <h1>Matriz ADP<br>Diagnóstico de Gestión de Equipos de Alto Desempeño</h1>
+        <p class="lead">
+          Este instrumento evalúa tres ejes críticos para construir y sostener un equipo de alto desempeño: <strong>Dirección</strong>, <strong>Competencia</strong> y <strong>Compromiso</strong>. Al finalizar, identificarás si los retos de tu equipo provienen de la arquitectura de tu gestión o del vínculo de liderazgo, y recibirás recomendaciones específicas de intervención.
+        </p>
+
+        <div class="info-grid">
+          <div class="info-block">
+            <div class="label">Preguntas</div>
+            <div class="value">24</div>
+            <div class="desc">8 por cada eje</div>
+          </div>
+          <div class="info-block">
+            <div class="label">Tiempo estimado</div>
+            <div class="value">10 min</div>
+            <div class="desc">respuesta sin interrupciones</div>
+          </div>
+          <div class="info-block">
+            <div class="label">Resultado</div>
+            <div class="value">Inmediato</div>
+            <div class="desc">diagnóstico + plan de acción</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre (opcional)</label>
+            <input type="text" id="nombre" placeholder="Tu nombre">
+          </div>
+          <div class="form-group">
+            <label for="empresa">Empresa o área (opcional)</label>
+            <input type="text" id="empresa" placeholder="Tu organización">
+          </div>
+        </div>
+
+        <div class="disclaimer">
+          <strong>Antes de comenzar:</strong> responde con honestidad, no con aspiración. El valor diagnóstico de esta herramienta depende de que veas la realidad como es, no como te gustaría que fuera. Tus respuestas no se guardan en ningún servidor: solo permanecen en tu navegador durante esta sesión.
+        </div>
+
+        <div class="button-row">
+          <div></div>
+          <button class="btn btn-primary" onclick="startEvaluation()">Iniciar evaluación →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EJE 1: DIRECCIÓN ===== -->
+    <section id="eje-1" class="screen">
+      <div class="eje-header dir">
+        <div class="eje-tag">Eje 1 de 3</div>
+        <h2>Dirección</h2>
+        <p class="subtitle">¿Saben a dónde vamos? Claridad de objetivos, sistemas de decisión y arquitectura de prioridades.</p>
+      </div>
+      <div class="progress-bar"><div class="progress-bar-fill" style="width: 0%" id="bar-1"></div></div>
+      <div id="questions-1"></div>
+      <div class="button-row">
+        <button class="btn btn-ghost" onclick="goToScreen('intro')">← Volver al inicio</button>
+        <button class="btn btn-primary" onclick="goToEje(2)" id="next-1" disabled>Siguiente: Competencia →</button>
+      </div>
+    </section>
+
+    <!-- ===== EJE 2: COMPETENCIA ===== -->
+    <section id="eje-2" class="screen">
+      <div class="eje-header com">
+        <div class="eje-tag com">Eje 2 de 3</div>
+        <h2>Competencia</h2>
+        <p class="subtitle">¿Tienen las herramientas y la habilidad? Arquitectura de procesos, capacitación y asignación.</p>
+      </div>
+      <div class="progress-bar"><div class="progress-bar-fill" style="width: 0%" id="bar-2"></div></div>
+      <div id="questions-2"></div>
+      <div class="button-row">
+        <button class="btn btn-ghost" onclick="goToEje(1)">← Eje anterior</button>
+        <button class="btn btn-primary" onclick="goToEje(3)" id="next-2" disabled>Siguiente: Compromiso →</button>
+      </div>
+    </section>
+
+    <!-- ===== EJE 3: COMPROMISO ===== -->
+    <section id="eje-3" class="screen">
+      <div class="eje-header cmp">
+        <div class="eje-tag cmp">Eje 3 de 3</div>
+        <h2>Compromiso</h2>
+        <p class="subtitle">¿Quieren llegar allí? Seguridad psicológica, vínculo, propósito y reconocimiento.</p>
+      </div>
+      <div class="progress-bar"><div class="progress-bar-fill" style="width: 0%" id="bar-3"></div></div>
+      <div id="questions-3"></div>
+      <div class="button-row">
+        <button class="btn btn-ghost" onclick="goToEje(2)">← Eje anterior</button>
+        <button class="btn btn-primary" onclick="calculateResults()" id="next-3" disabled>Ver mi diagnóstico →</button>
+      </div>
+    </section>
+
+    <!-- ===== RESULTADOS ===== -->
+    <section id="resultados" class="screen">
+      <div class="resultado-card global">
+        <div class="eyebrow">Resultado · Matriz ADP</div>
+        <h2>Tu diagnóstico de gestión</h2>
+        <p class="nombre-eval" id="nombre-eval"></p>
+
+        <div class="legend">
+          <div class="legend-item">
+            <div class="range"><span class="dot" style="background: var(--rojo);"></span>1.0 – 2.4</div>
+            <div class="name">Punto de quiebre</div>
+          </div>
+          <div class="legend-item">
+            <div class="range"><span class="dot" style="background: var(--naranja);"></span>2.5 – 3.4</div>
+            <div class="name">Brecha activa</div>
+          </div>
+          <div class="legend-item">
+            <div class="range"><span class="dot" style="background: var(--amarillo);"></span>3.5 – 4.4</div>
+            <div class="name">Funcional</div>
+          </div>
+          <div class="legend-item">
+            <div class="range"><span class="dot" style="background: var(--verde);"></span>4.5 – 5.0</div>
+            <div class="name">Consolidado</div>
+          </div>
+        </div>
+
+        <div class="ejes-grid" id="ejes-grid"></div>
+
+        <div class="diagnostico-section">
+          <h3>Diagnóstico</h3>
+          <div id="diagnostico-content"></div>
+        </div>
+
+        <div class="obstaculos">
+          <h4>Obstáculos prioritarios a remover</h4>
+          <p class="citation">Lectura desde el marco de liderazgo de servicio · Santiago Fernández Escobar</p>
+          <ul id="obstaculos-list"></ul>
+        </div>
+
+        <div class="reflexion">
+          <h4>Preguntas para tu próxima reflexión</h4>
+          <ol id="reflexion-list"></ol>
+        </div>
+
+        <div class="button-row no-print">
+          <button class="btn btn-ghost" onclick="resetAll()">Reiniciar evaluación</button>
+          <div style="display: flex; gap: 12px;">
+            <button class="btn btn-secondary" onclick="downloadResult()">Descargar resultado</button>
+            <button class="btn btn-primary" onclick="window.print()">Imprimir / Guardar PDF</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="logo-333">333<sup>®</sup></div>
+    <p>333 Academy · Formación para profesionales del sector</p>
+    <p>Matriz ADP · Diagnóstico de Liderazgo y Gestión de Equipos de Alto Desempeño</p>
+  </div>
+</footer>
+
+<script>
+// ============================================
+// DATOS: PREGUNTAS POR EJE
+// ============================================
+const preguntas = {
+  1: {
+    nombre: "Dirección",
+    pregunta_central: "¿Saben a dónde vamos?",
+    items: [
+      "Cada persona del equipo, si la entrevisto por separado, puede nombrar sin titubear los tres indicadores operativos por los que se evalúa su trabajo este trimestre.",
+      "Los criterios para escalar una decisión hacia arriba están definidos por escrito, no por costumbre ni por temor a equivocarse.",
+      "Cuando dos áreas tienen prioridades en conflicto, existe un mecanismo conocido para resolverlo, y ese mecanismo no soy yo interviniendo caso por caso.",
+      "La planificación del periodo incluye, además de las metas, una lista explícita de lo que el equipo NO va a hacer.",
+      "Cada persona entiende cómo su output diario alimenta los resultados del área y de la empresa, no solo cuál es su tarea inmediata.",
+      "Si me ausento 15 días sin previo aviso, mis reportes directos saben con certeza cuáles son las tres prioridades del periodo, en qué orden, y bajo qué criterio de éxito.",
+      "Las metas del equipo se ajustan cuando la realidad operativa cambia. No se mantienen por inercia hasta el cierre del periodo.",
+      "Los conflictos técnicos en el equipo se resuelven con datos y procedimiento documentado, no por jerarquía ni antigüedad."
+    ]
+  },
+  2: {
+    nombre: "Competencia",
+    pregunta_central: "¿Tienen las herramientas y la habilidad?",
+    items: [
+      "Los procesos críticos del área están documentados al nivel donde una persona nueva podría operarlos en 30 días con apoyo mínimo del equipo.",
+      "Las personas reciben las herramientas que necesitan para ejecutar — técnicas, tecnológicas, formativas — antes de ser evaluadas por su uso, no después.",
+      "Cuando un colaborador no logra un resultado esperado, mi primera línea de análisis revisa si el sistema le falló, no si la persona falló.",
+      "La asignación de tareas se basa en fortalezas observadas de cada miembro, no en disponibilidad de calendario ni en quién siempre las ha hecho.",
+      "Existe un mecanismo formal de transferencia de conocimiento entre miembros del equipo, de modo que el saber crítico no vive en cabezas individuales.",
+      "Los errores operativos se analizan con metodología de causa raíz documentada, no con conversaciones informales que no dejan trazo accionable.",
+      "La capacitación del equipo está conectada con brechas de desempeño específicas identificadas en evaluación, no es contenido genérico ni motivacional descontextualizado.",
+      "Cuando una herramienta o proceso se vuelve obsoleto, el equipo lo detecta y lo reemplaza antes de que cause un problema, no después."
+    ]
+  },
+  3: {
+    nombre: "Compromiso",
+    pregunta_central: "¿Quieren llegar allí?",
+    items: [
+      "En la última reunión en la que tomé una decisión equivocada, alguien de mi equipo me lo dijo en el momento, y la conversación mejoró la decisión.",
+      "Cuando alguien comete un error en mi equipo, el costo social es bajo: hablar del error rápido es más valorado por la cultura interna que ocultarlo.",
+      "Conozco al menos un motivador profesional específico de cada uno de mis reportes directos, más allá de la remuneración.",
+      "La participación en mis reuniones de equipo no está concentrada en las mismas dos o tres voces. Las personas más calladas también aportan en decisiones.",
+      "He recibido feedback duro sobre mi forma de gestionar, viniendo de mi propio equipo, en los últimos seis meses, y no me sorprendió porque ya lo había pedido.",
+      "Cuando reconozco un buen resultado, lo hago con especificidad y de manera oportuna. No con frases genéricas ni con semanas de retraso.",
+      "Mi equipo distingue claramente entre estar ocupado y estar comprometido, y yo refuerzo conductualmente lo segundo, no lo primero.",
+      "Las personas de mi equipo recomendarían trabajar aquí a otros profesionales de su red, no por inercia sino porque genuinamente lo creen."
+    ]
+  }
+};
+
+// ============================================
+// ESTADO
+// ============================================
+const respuestas = { 1: {}, 2: {}, 3: {} };
+
+// ============================================
+// RENDERIZADO DE PREGUNTAS
+// ============================================
+function renderQuestions() {
+  [1, 2, 3].forEach(ejeNum => {
+    const container = document.getElementById(`questions-${ejeNum}`);
+    const eje = preguntas[ejeNum];
+    container.innerHTML = '';
+
+    eje.items.forEach((texto, idx) => {
+      const qNum = idx + 1;
+      const globalNum = (ejeNum - 1) * 8 + qNum;
+      const card = document.createElement('div');
+      card.className = 'question-card';
+      card.id = `q-${ejeNum}-${qNum}`;
+      card.innerHTML = `
+        <div class="question-number">Pregunta ${globalNum} de 24</div>
+        <div class="question-text">${texto}</div>
+        <div class="scale" data-eje="${ejeNum}" data-q="${qNum}">
+          ${[1, 2, 3, 4, 5].map(val => `
+            <div class="scale-option" data-value="${val}" onclick="selectAnswer(${ejeNum}, ${qNum}, ${val})">${val}</div>
+          `).join('')}
+        </div>
+        <div class="scale-labels">
+          <span>Totalmente en desacuerdo</span>
+          <span>Totalmente de acuerdo</span>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  });
+}
+
+function selectAnswer(eje, qNum, value) {
+  respuestas[eje][qNum] = value;
+
+  const card = document.getElementById(`q-${eje}-${qNum}`);
+  card.classList.add('answered');
+  card.querySelectorAll('.scale-option').forEach(opt => {
+    opt.classList.toggle('selected', parseInt(opt.dataset.value) === value);
+  });
+
+  updateProgress(eje);
+  updateGlobalProgress();
+}
+
+function updateProgress(eje) {
+  const total = preguntas[eje].items.length;
+  const answered = Object.keys(respuestas[eje]).length;
+  const pct = (answered / total) * 100;
+  document.getElementById(`bar-${eje}`).style.width = `${pct}%`;
+  document.getElementById(`next-${eje}`).disabled = answered < total;
+}
+
+function updateGlobalProgress() {
+  const totalAnswered = Object.keys(respuestas[1]).length + Object.keys(respuestas[2]).length + Object.keys(respuestas[3]).length;
+  const indicator = document.getElementById('progress-text');
+  if (document.getElementById('intro').classList.contains('active') || document.getElementById('resultados').classList.contains('active')) {
+    indicator.textContent = '';
+  } else {
+    indicator.innerHTML = `<strong>${totalAnswered}</strong> de 24 respondidas`;
+  }
+}
+
+// ============================================
+// NAVEGACIÓN
+// ============================================
+function goToScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  updateGlobalProgress();
+}
+
+function startEvaluation() {
+  goToScreen('eje-1');
+}
+
+function goToEje(num) {
+  goToScreen(`eje-${num}`);
+}
+
+// ============================================
+// CÁLCULO Y DIAGNÓSTICO
+// ============================================
+function promedioEje(eje) {
+  const values = Object.values(respuestas[eje]);
+  if (values.length === 0) return 0;
+  return values.reduce((a, b) => a + b, 0) / values.length;
+}
+
+function clasificarZona(promedio) {
+  if (promedio >= 4.5) return { zona: 'consolidado', color: 'verde', label: 'Consolidado' };
+  if (promedio >= 3.5) return { zona: 'funcional', color: 'amarillo', label: 'Funcional' };
+  if (promedio >= 2.5) return { zona: 'brecha', color: 'naranja', label: 'Brecha activa' };
+  return { zona: 'quiebre', color: 'rojo', label: 'Punto de quiebre' };
+}
+
+function diagnosticoCruzado(d, c, co) {
+  const UMBRAL = 3.5;
+  const dBaja = d < UMBRAL;
+  const cBaja = c < UMBRAL;
+  const coBaja = co < UMBRAL;
+
+  // Sistema consolidado
+  if (d >= 4.0 && c >= 4.0 && co >= 4.0) {
+    return {
+      tipo: 'consolidado',
+      titulo: 'Sistema de Alto Desempeño Consolidado',
+      texto: 'Tu equipo opera con claridad de dirección, capacidad técnica y compromiso genuino. <strong>Tu rol como gestor es ahora institucionalizar el sistema</strong> para que sobreviva sin tu presencia diaria, y apalancarte como mentor de otros gestores del sector. El riesgo de esta zona es la complacencia: revisa los tres ejes cada trimestre para asegurar que no se erosionen.',
+      obstaculos: [
+        { titulo: 'Obstáculo a vigilar', texto: 'La complacencia. Cuando todo funciona, los gestores dejan de revisar sistemas. Establece un ritual de revisión trimestral.' },
+        { titulo: 'Oportunidad', texto: 'Documentar tu arquitectura de gestión para que otros la repliquen. Tu sistema es transferible.' }
+      ]
+    };
+  }
+
+  // Colapso integral
+  if (d < 2.5 && c < 2.5 && co < 2.5) {
+    return {
+      tipo: 'critico',
+      titulo: 'Colapso Integral del Sistema',
+      texto: 'Los tres ejes están en zona de quiebre. <strong>El problema no es resolver una variable, es reconstruir la arquitectura completa</strong>. Antes de actuar sobre el equipo, conviene una intervención profunda con apoyo externo y, posiblemente, una revisión del propio rol de gestión.',
+      obstaculos: [
+        { titulo: 'Prioridad 1 — Estabilizar Dirección', texto: 'Define en menos de dos semanas las 3 prioridades operativas inequívocas del trimestre. Sin este piso, ninguna otra intervención prospera.' },
+        { titulo: 'Prioridad 2 — Reconstruir Compromiso mínimo', texto: 'Conversa uno a uno con cada reporte directo para entender por qué se quedaron. Sin este piso emocional, los procesos no se ejecutarán aunque los rediseñes.' },
+        { titulo: 'Prioridad 3 — Considerar apoyo externo', texto: 'Un sistema con los tres ejes en quiebre rara vez se recupera solo desde adentro.' }
+      ]
+    };
+  }
+
+  // Equipo capaz y motivado pero descoordinado: D baja, C alta, Co alta
+  if (dBaja && !cBaja && !coBaja) {
+    return {
+      tipo: 'gestion',
+      titulo: 'Problema de Gestión: Equipo capaz y motivado, pero descoordinado',
+      texto: 'Tu equipo tiene la capacidad técnica y la energía para entregar resultados, pero <strong>la arquitectura de tu gestión no les da claridad sobre prioridades, decisiones y criterios de éxito</strong>. El esfuerzo se dispersa. Esta es la situación más frustrante para un equipo talentoso: trabajan mucho y avanzan poco. La buena noticia: este problema se resuelve con intervención sistémica, no con cambio de personas.',
+      obstaculos: [
+        { titulo: 'Obstáculo principal', texto: 'Ambigüedad de rumbo. Tu equipo no sabe en qué orden importan las cosas ni cuándo escalar.' },
+        { titulo: 'Acción inmediata', texto: 'Documenta por escrito las 3 prioridades del trimestre y los criterios para escalar decisiones. Compártelo y valídalo con cada reporte directo.' },
+        { titulo: 'Acción en 60 días', texto: 'Construye un mecanismo permanente de resolución de conflictos de prioridad entre áreas, que no dependa de tu intervención caso por caso.' }
+      ]
+    };
+  }
+
+  // Equipo claro y motivado pero sin herramientas: D alta, C baja, Co alta
+  if (!dBaja && cBaja && !coBaja) {
+    return {
+      tipo: 'gestion',
+      titulo: 'Problema de Gestión: Equipo claro y motivado, pero sin herramientas',
+      texto: 'Tu equipo sabe a dónde va y quiere llegar, pero <strong>el sistema operativo no les da los procesos, herramientas o capacitación que necesitan para ejecutar con excelencia</strong>. Este patrón típicamente desemboca en agotamiento: la motivación inicial se quema contra obstáculos sistémicos que se repiten. Si no intervienes, perderás compromiso por simple desgaste.',
+      obstaculos: [
+        { titulo: 'Obstáculo principal', texto: 'Falta de infraestructura operativa. Las personas reciben metas pero no medios proporcionales.' },
+        { titulo: 'Acción inmediata', texto: 'Mapea los 3 procesos críticos más rotos. No los más visibles: los más críticos. Documéntalos al nivel donde un nuevo ingreso pueda operarlos en 30 días.' },
+        { titulo: 'Acción en 60 días', texto: 'Conecta la capacitación del equipo con brechas específicas de desempeño identificadas, no con cursos genéricos. Mide el impacto en KPIs operativos.' }
+      ]
+    };
+  }
+
+  // Equipo claro y capaz pero desconectado: D alta, C alta, Co baja
+  if (!dBaja && !cBaja && coBaja) {
+    return {
+      tipo: 'liderazgo',
+      titulo: 'Problema de Liderazgo: Equipo claro y capaz, pero desconectado',
+      texto: 'Tu sistema de gestión funciona: la gente sabe qué hacer y cómo hacerlo. Lo que falta es vínculo. <strong>El problema no está en tu equipo ni en tus procesos: está en el ambiente humano que has permitido (o no construido) como líder</strong>. Las personas ejecutan, pero sin energía. La rotación silenciosa es el primer síntoma; los errores por omisión, el segundo. Este eje no se arregla con un nuevo proceso: se arregla con conducta tuya, sostenida en el tiempo.',
+      obstaculos: [
+        { titulo: 'Obstáculo principal', texto: 'El ambiente humano. La seguridad psicológica, el reconocimiento específico y el vínculo personal están bajo umbral.' },
+        { titulo: 'Acción inmediata', texto: 'Programa conversaciones uno a uno con cada reporte directo. No para hablar de resultados: para escuchar. Pregunta qué obstáculo invisible deberías estar removiendo.' },
+        { titulo: 'Acción en 60 días', texto: 'Pide feedback estructurado sobre tu forma de gestionar. Si es la primera vez que lo pides, tu equipo necesitará 2 o 3 oportunidades antes de creer que es seguro responder con honestidad.' },
+        { titulo: 'Reflexión incómoda', texto: 'Edmondson lo demuestra: la seguridad psicológica se construye por evidencia, no por declaración. ¿Qué hiciste tú la última semana que tu equipo podría leer como evidencia de seguridad?' }
+      ]
+    };
+  }
+
+  // Salvado por la actitud: D baja, C baja, Co alta
+  if (dBaja && cBaja && !coBaja) {
+    return {
+      tipo: 'critico',
+      titulo: 'Equipo Salvado por la Actitud',
+      texto: 'Tu equipo está sosteniendo el resultado con compromiso personal, supliendo con esfuerzo lo que el sistema no provee. <strong>Es admirable y es insostenible</strong>. El compromiso sin dirección y sin competencia se agota: primero en los más comprometidos, después en todos. Tienes una ventana corta de tiempo antes de que el compromiso colapse por desgaste. No esperes a que aparezcan las renuncias para actuar.',
+      obstaculos: [
+        { titulo: 'Obstáculo principal', texto: 'Doble déficit en gestión. El equipo no sabe a dónde va con precisión, ni cómo llegar con eficiencia.' },
+        { titulo: 'Acción inmediata', texto: 'Reconoce explícitamente al equipo el esfuerzo que está supliendo el sistema. Nombra el agotamiento antes de que se vuelva queja o renuncia.' },
+        { titulo: 'Acción en 30 días', texto: 'Define las 3 prioridades inequívocas del trimestre y documenta los 2 procesos más críticos. Solo eso. No intentes resolver todo simultáneamente.' },
+        { titulo: 'Riesgo a vigilar', texto: 'Las personas más valiosas son las primeras en irse cuando el sistema no acompaña su compromiso. Identifica a tus 3 personas clave y conversa con ellas esta semana.' }
+      ]
+    };
+  }
+
+  // Casos restantes: dos ejes en zona baja
+  if (dBaja && cBaja && coBaja) {
+    return {
+      tipo: 'critico',
+      titulo: 'Múltiples Ejes en Zona Crítica',
+      texto: 'Más de un eje está en zona de atención o quiebre simultáneamente. <strong>El sistema requiere intervención secuenciada, no simultánea</strong>: intentar todo a la vez fragmenta la energía del equipo y la tuya. Empieza por el eje con menor puntaje y avanza después al siguiente.',
+      obstaculos: getObstaculosPorEje(d, c, co)
+    };
+  }
+
+  // Caso por defecto: zona funcional, sin problemas críticos
+  return {
+    tipo: 'gestion',
+    titulo: 'Sistema Funcional con Margen de Mejora',
+    texto: 'Tus tres ejes están en zona funcional o mejor. <strong>El riesgo de esta zona es la complacencia</strong>: nada está roto, pero nada está optimizado tampoco. Identifica el eje con menor puntaje y conviértelo en tu prioridad de mejora del próximo trimestre.',
+    obstaculos: getObstaculosPorEje(d, c, co)
+  };
+}
+
+function getObstaculosPorEje(d, c, co) {
+  const ejes = [
+    { nombre: 'Dirección', valor: d, accion: 'Clarifica prioridades, mecanismos de decisión y criterios de escalamiento.' },
+    { nombre: 'Competencia', valor: c, accion: 'Documenta procesos críticos, conecta capacitación con brechas específicas.' },
+    { nombre: 'Compromiso', valor: co, accion: 'Construye seguridad psicológica con evidencia conductual sostenida.' }
+  ];
+  ejes.sort((a, b) => a.valor - b.valor);
+  return ejes.map((e, idx) => ({
+    titulo: `Prioridad ${idx + 1} · ${e.nombre} (${e.valor.toFixed(1)})`,
+    texto: e.accion
+  }));
+}
+
+function getReflexionPorTipo(tipo) {
+  const base = [
+    "¿Qué procesos de tu gestión actual están asfixiando la autonomía y el alto desempeño de tus colaboradores, sin que tú lo veas?",
+    "¿Cuántas decisiones que tomaste personalmente este mes pudieron haberse tomado dos niveles más abajo sin pérdida de calidad?",
+    "Si tu equipo evaluara hoy si tú trabajas para ellos o si ellos trabajan para ti, ¿cuál sería la respuesta honesta?"
+  ];
+  const especificas = {
+    gestion: [
+      "¿Cuál es el sistema que has construido el último año cuyo funcionamiento ya no depende de tu presencia diaria? Si no hay ninguno, ¿qué dice eso de tu gestión?",
+      "¿Qué decisión vas a tomar esta semana que materialice tu intervención prioritaria en los próximos 90 días?"
+    ],
+    liderazgo: [
+      "¿Cuál es el problema operativo que tu equipo ha aprendido a no traerte porque sabe que tu reacción no agrega valor?",
+      "¿Qué conducta tuya, sostenida durante el próximo mes, generaría la evidencia que tu equipo necesita para confiar más?"
+    ],
+    consolidado: [
+      "¿A quién de tu sector o tu empresa puedes mentorizar para que replique lo que has construido?",
+      "¿Cuál de los tres ejes vas a revisar trimestre a trimestre para asegurar que no se erosione?"
+    ],
+    critico: [
+      "¿Cuál es el único movimiento de los próximos 14 días que, si lo hicieras, daría la señal más clara a tu equipo de que esto va a cambiar?",
+      "¿Estás dispuesto a pedir apoyo externo o estás operando bajo el supuesto de que debes resolverlo solo?"
+    ]
+  };
+  return [...base, ...(especificas[tipo] || especificas.gestion)];
+}
+
+function calculateResults() {
+  const d = promedioEje(1);
+  const c = promedioEje(2);
+  const co = promedioEje(3);
+
+  const zonaD = clasificarZona(d);
+  const zonaC = clasificarZona(c);
+  const zonaCo = clasificarZona(co);
+
+  // Render saludo personalizado
+  const nombre = document.getElementById('nombre').value.trim();
+  const empresa = document.getElementById('empresa').value.trim();
+  let saludo = '';
+  if (nombre && empresa) saludo = `<strong>${nombre}</strong> · ${empresa}`;
+  else if (nombre) saludo = `<strong>${nombre}</strong>`;
+  else if (empresa) saludo = empresa;
+  else saludo = `Evaluación realizada el ${new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}`;
+  document.getElementById('nombre-eval').innerHTML = saludo;
+
+  // Render ejes
+  const ejesData = [
+    { num: 1, nombre: 'Dirección', pregunta: '¿Saben a dónde vamos?', valor: d, zona: zonaD },
+    { num: 2, nombre: 'Competencia', pregunta: '¿Tienen las herramientas y la habilidad?', valor: c, zona: zonaC },
+    { num: 3, nombre: 'Compromiso', pregunta: '¿Quieren llegar allí?', valor: co, zona: zonaCo }
+  ];
+
+  document.getElementById('ejes-grid').innerHTML = ejesData.map(e => `
+    <div class="eje-resultado">
+      <div class="eje-resultado-info">
+        <h3>Eje ${e.num} · ${e.nombre}</h3>
+        <div class="question">${e.pregunta}</div>
+        <div class="bar-track">
+          <div class="bar-fill ${e.zona.color}" style="width: ${(e.valor / 5) * 100}%"></div>
+        </div>
+      </div>
+      <div class="eje-resultado-score">
+        <div class="score-number ${e.zona.color}">${e.valor.toFixed(1)}</div>
+        <div class="score-zone ${e.zona.color}">${e.zona.label}</div>
+      </div>
+    </div>
+  `).join('');
+
+  // Diagnóstico
+  const diag = diagnosticoCruzado(d, c, co);
+  const badgeClass = diag.tipo === 'liderazgo' ? 'liderazgo' :
+                     diag.tipo === 'consolidado' ? 'consolidado' :
+                     diag.tipo === 'critico' ? 'critico' : 'gestion';
+  const badgeLabel = diag.tipo === 'liderazgo' ? 'Problema de Liderazgo' :
+                     diag.tipo === 'consolidado' ? 'Sistema Consolidado' :
+                     diag.tipo === 'critico' ? 'Atención Crítica' : 'Problema de Gestión';
+
+  document.getElementById('diagnostico-content').innerHTML = `
+    <div class="diagnostico-badge ${badgeClass}">${badgeLabel}</div>
+    <h4 style="font-size: 19px; color: var(--azul-oscuro); margin-bottom: 12px; font-weight: 700;">${diag.titulo}</h4>
+    <p class="diagnostico-texto">${diag.texto}</p>
+  `;
+
+  // Obstáculos
+  document.getElementById('obstaculos-list').innerHTML = diag.obstaculos.map(o => `
+    <li><strong>${o.titulo}</strong>${o.texto}</li>
+  `).join('');
+
+  // Reflexión
+  const reflexiones = getReflexionPorTipo(diag.tipo);
+  document.getElementById('reflexion-list').innerHTML = reflexiones.map(r => `<li>${r}</li>`).join('');
+
+  goToScreen('resultados');
+}
+
+// ============================================
+// DESCARGAR Y REINICIAR
+// ============================================
+function downloadResult() {
+  const nombre = document.getElementById('nombre').value.trim() || 'Anónimo';
+  const empresa = document.getElementById('empresa').value.trim() || 'No especificada';
+  const d = promedioEje(1).toFixed(2);
+  const c = promedioEje(2).toFixed(2);
+  const co = promedioEje(3).toFixed(2);
+  const fecha = new Date().toLocaleDateString('es-ES');
+
+  let texto = `MATRIZ ADP — DIAGNÓSTICO DE GESTIÓN DE ALTO DESEMPEÑO\n`;
+  texto += `333 Academy\n`;
+  texto += `===========================================================\n\n`;
+  texto += `Nombre: ${nombre}\n`;
+  texto += `Empresa/área: ${empresa}\n`;
+  texto += `Fecha: ${fecha}\n\n`;
+  texto += `RESULTADOS POR EJE\n`;
+  texto += `-----------------------------------------------------------\n`;
+  texto += `Eje 1 · Dirección (¿Saben a dónde vamos?):  ${d} / 5.0\n`;
+  texto += `Eje 2 · Competencia (¿Tienen herramientas?): ${c} / 5.0\n`;
+  texto += `Eje 3 · Compromiso (¿Quieren llegar allí?):  ${co} / 5.0\n\n`;
+  texto += `DETALLE DE RESPUESTAS\n`;
+  texto += `-----------------------------------------------------------\n`;
+
+  [1, 2, 3].forEach(ejeNum => {
+    texto += `\n[Eje ${ejeNum}: ${preguntas[ejeNum].nombre}]\n`;
+    preguntas[ejeNum].items.forEach((p, idx) => {
+      const r = respuestas[ejeNum][idx + 1] || '-';
+      texto += `  ${idx + 1}. [${r}/5] ${p}\n`;
+    });
+  });
+
+  texto += `\n===========================================================\n`;
+  texto += `Generado por la Matriz ADP de 333 Academy\n`;
+
+  const blob = new Blob([texto], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const safeName = (nombre.replace(/[^a-z0-9]/gi, '_').toLowerCase() || 'matriz_adp');
+  a.href = url;
+  a.download = `${safeName}_matriz_adp_${fecha.replace(/\//g, '-')}.txt`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function resetAll() {
+  if (!confirm('¿Reiniciar la evaluación? Se borrarán todas tus respuestas.')) return;
+  Object.keys(respuestas).forEach(k => respuestas[k] = {});
+  document.querySelectorAll('.scale-option.selected').forEach(o => o.classList.remove('selected'));
+  document.querySelectorAll('.question-card.answered').forEach(c => c.classList.remove('answered'));
+  document.querySelectorAll('.progress-bar-fill').forEach(b => b.style.width = '0%');
+  document.querySelectorAll('button[id^="next-"]').forEach(b => b.disabled = true);
+  document.getElementById('nombre').value = '';
+  document.getElementById('empresa').value = '';
+  goToScreen('intro');
+}
+
+// ============================================
+// INICIALIZACIÓN
+// ============================================
+renderQuestions();
+</script>
+
+</body>
+</html>
